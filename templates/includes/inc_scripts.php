@@ -22,3 +22,4 @@
 <script src="<?php echo JS.'main.js?v='.get_version(); ?>"></script>
 <!-- Scripts de UptTask -->
 <script src="../../assets/js/app.js"></script>
+

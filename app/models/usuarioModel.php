@@ -1,6 +1,6 @@
 <?php
 
-class usuarioModel extends Model
+class UsuarioModel extends Model
 {
   protected static $tabla = 'usuarios';
     protected static $columnasDB = ['id', 'nombre', 'email', 'password', 'token', 'confirmado'];

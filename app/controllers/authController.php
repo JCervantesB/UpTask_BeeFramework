@@ -19,18 +19,18 @@ class authController extends Controller
 
     $alertas = [];
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $usuario = new usuarioModel($_POST);
+      $usuario = new UsuarioModel($_POST);
 
       $alertas = $usuario->validarLogin();
 
       if (empty($alertas)) {
         // Verificar que el usuario exista
-        $usuario = usuarioModel::where('email', $usuario->email);
+        $usuario = UsuarioModel::where('email', $usuario->email);
 
         if (!$usuario) {
-          usuarioModel::setAlerta('error', 'El usuario no existe');
+          UsuarioModel::setAlerta('error', 'El usuario no existe');
         } elseif ($usuario && empty($usuario->confirmado)) {
-          usuarioModel::setAlerta('error', 'El usuario aún no está confirmado');
+          UsuarioModel::setAlerta('error', 'El usuario aún no está confirmado');
           $noConfirmado = true;
         } else {
           if (password_verify($_POST['password'], $usuario->password)) {
@@ -43,12 +43,12 @@ class authController extends Controller
             // Redireccionar al proyecto
             header('Location: /dashboard');
           } else {
-            usuarioModel::setAlerta('error', 'Password incorrecto');
+            UsuarioModel::setAlerta('error', 'Password incorrecto');
           }
         }
       }
     }
-    $alertas = usuarioModel::getAlertas();
+    $alertas = UsuarioModel::getAlertas();
 
     $data =
       [
@@ -79,17 +79,17 @@ class authController extends Controller
    */
   function crear()
   {
-    $usuario = new usuarioModel();
+    $usuario = new UsuarioModel();
     $alertas = [];
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $usuario->sincronizar($_POST);
       $alertas = $usuario->validarNuevaCuenta();
 
       if (empty($alertas)) {
-        $existeUsuario = usuarioModel::where('email', $usuario->email);
+        $existeUsuario = UsuarioModel::where('email', $usuario->email);
         if ($existeUsuario) {
-          usuarioModel::setAlerta('error', 'El Usuario ya esta registrado');
-          $alertas = usuarioModel::getAlertas();
+          UsuarioModel::setAlerta('error', 'El Usuario ya esta registrado');
+          $alertas = UsuarioModel::getAlertas();
         } else {
           //Hashear Password
           $usuario->hashPassword();
@@ -145,11 +145,11 @@ class authController extends Controller
   {
     $alertas = [];
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $usuario = new usuarioModel($_POST);
+      $usuario = new UsuarioModel($_POST);
       $alertas = $usuario->validarEmail();
 
       if (empty($alertas)) {
-        $usuario = usuarioModel::where('email', $usuario->email);
+        $usuario = UsuarioModel::where('email', $usuario->email);
 
         if ($usuario && $usuario->confirmado === "1") {
           // Generar un nuevo token
@@ -162,15 +162,15 @@ class authController extends Controller
           $email = new Email($usuario->nombre, $usuario->email, $usuario->token);
           $email->enviarInstrucciones();
           // Imprimir una alaerta
-          usuarioModel::setAlerta('exito', 'Hemos enviado las instrucciones a tu email');
+          UsuarioModel::setAlerta('exito', 'Hemos enviado las instrucciones a tu email');
           //debuguear($usuario);
         } else {
           // No encontro el usuario
-          usuarioModel::setAlerta('error', 'El usuario no existe o no esta confirmado');
+          UsuarioModel::setAlerta('error', 'El usuario no existe o no esta confirmado');
         }
       }
     }
-    $alertas = usuarioModel::getAlertas();
+    $alertas = UsuarioModel::getAlertas();
 
     $data =
       [
@@ -196,10 +196,10 @@ class authController extends Controller
     if (!$token) header('Location /');
 
     // Identificar el usuario con este token
-    $usuario = usuarioModel::where('token', $token);
+    $usuario = UsuarioModel::where('token', $token);
 
     if (empty($usuario)) {
-      usuarioModel::setAlerta('error', 'Token no válido');
+      UsuarioModel::setAlerta('error', 'Token no válido');
       $mostrar = false;
     }
 
@@ -228,7 +228,7 @@ class authController extends Controller
       }
     }
 
-    $alertas = usuarioModel::getAlertas();
+    $alertas = UsuarioModel::getAlertas();
 
     $data =
       [
@@ -250,11 +250,11 @@ class authController extends Controller
     $alertas = [];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $usuario = new usuarioModel($_POST);
+      $usuario = new UsuarioModel($_POST);
       $alertas = $usuario->validarEmail();
 
       if (empty($alertas)) {
-        $usuario = usuarioModel::where('email', $usuario->email);
+        $usuario = UsuarioModel::where('email', $usuario->email);
 
         if ($usuario && $usuario->confirmado === "0") {
           // Generar un nuevo token
@@ -267,15 +267,15 @@ class authController extends Controller
           $email = new Email($usuario->nombre, $usuario->email, $usuario->token);
           $email->enviarConfirmacion();
           // Imprimir una alaerta
-          usuarioModel::setAlerta('exito', 'Hemos enviado las instrucciones a tu email');
+          UsuarioModel::setAlerta('exito', 'Hemos enviado las instrucciones a tu email');
           //debuguear($usuario);
         } else {
           // No encontro el usuario
-          usuarioModel::setAlerta('error', 'El usuario no existe.');
+          UsuarioModel::setAlerta('error', 'El usuario no existe.');
         }
       }
     }
-    $alertas = usuarioModel::getAlertas();
+    $alertas = UsuarioModel::getAlertas();
 
     $data =
       [
@@ -299,11 +299,11 @@ class authController extends Controller
     if (!$token) header('Location: /');
 
     //Encontrar al usuario con este token
-    $usuario = usuarioModel::where('token', $token);
+    $usuario = UsuarioModel::where('token', $token);
 
     if (empty($usuario)) {
       //No se encontro el usuario con ese token
-      usuarioModel::setAlerta('error', 'Token no válido');
+      UsuarioModel::setAlerta('error', 'Token no válido');
     } else {
       // Confirmar el usuario
       $usuario->confirmado = 1;
@@ -311,9 +311,9 @@ class authController extends Controller
       unset($usuario->password2);
 
       $usuario->guardar();
-      usuarioModel::setAlerta('exito', 'Cuenta validada correctamente');
+      UsuarioModel::setAlerta('exito', 'Cuenta validada correctamente');
     }
-    $alertas = usuarioModel::getAlertas();
+    $alertas = UsuarioModel::getAlertas();
 
     $data =
       [

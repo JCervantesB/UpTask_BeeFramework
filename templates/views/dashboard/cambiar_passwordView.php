@@ -1,11 +1,12 @@
+<?php include_once __DIR__ . '../../../includes/inc_header_dashboard.php' ?>
 <?php include_once __DIR__ . '/header-dashboard.php' ?>
 
 <div class="contenedor-sm">
-    <?php include_once __DIR__ . '/../templates/alertas.php' ?>
-    <a href="/perfil" class="enlace">Volver al perfil</a>
+<?php include_once __DIR__ . '../../../includes/alertas.php' ?>
+    <a href="/dashboard/perfil" class="enlace">Volver al perfil</a>
 
 
-    <form method="POST" class="formulario" action="/cambiar-password">
+    <form method="POST" class="formulario" action="/dashboard/cambiar-password">
         <div class="campo">
             <label for="nombre">Password Actual</label>
             <input 
@@ -28,3 +29,4 @@
 </div>
 
 <?php include_once __DIR__ . '/footer-dashboard.php' ?>
+<?php include_once __DIR__ . '../../../includes/inc_footer.php' ?>

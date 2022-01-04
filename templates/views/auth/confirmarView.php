@@ -5,8 +5,7 @@
     <?php include_once __DIR__ . '../../../includes/alertas.php' ?>
 
     <div class="acciones">
-            <a href="/">Iniciar Sesión</a>
+            <a href="/home">Iniciar Sesión</a>
         </div>
     </div><!--Contenedor-sm -->
 </div>
-<?php include_once __DIR__ . '../../../includes/inc_footer.php' ?>
