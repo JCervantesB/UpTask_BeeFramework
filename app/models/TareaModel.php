@@ -1,8 +1,6 @@
 <?php 
 
-namespace Model;
-
-class Tarea extends ActiveRecord {
+class TareaModel extends Model {
     protected static $tabla = 'tareas';
     protected static $columnasDB = ['id', 'nombre', 'estado', 'proyectoId'];
 

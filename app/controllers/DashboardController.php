@@ -50,7 +50,7 @@ class dashboardController extends Controller
                 // Guardar el proyecto
                 $proyecto->guardar();
                 // Redireccionar
-                header('Location: /proyecto?id=' . $proyecto->url);
+                header('Location: /dashboard/proyecto?id=' . $proyecto->url);
             }
         }
 
