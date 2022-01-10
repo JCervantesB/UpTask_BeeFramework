@@ -7,7 +7,7 @@
 // Definir el uso horario o timezone del sistema
 date_default_timezone_set('America/Mexico_City');
 
-define('PREPROS'     , true); // Activar en caso de trabajar el desarrollo en prepros como servidor local
+define('PREPROS'     , false); // Activar en caso de trabajar el desarrollo en prepros como servidor local
 define('PORT'       , '80'); // Puerto por defecto de Prepros < 2020
 
 // Lenguaje
@@ -68,9 +68,9 @@ define('UPLOADED'   , ASSETS.'uploads/');
 // Set para conexión local o de desarrollo
 define('LDB_ENGINE' , 'mysql');
 define('LDB_HOST'   , 'localhost');
-define('LDB_NAME'   , 'appsalon');
+define('LDB_NAME'   , 'uptask');
 define('LDB_USER'   , 'root');
-define('LDB_PASS'   , 'root');
+define('LDB_PASS'   , '');
 define('LDB_CHARSET', 'utf8');
 
 // El controlador por defecto / el método por defecto / el controlador de errores por defecto
