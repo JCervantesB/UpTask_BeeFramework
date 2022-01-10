@@ -73,6 +73,15 @@ Cambie el puerto `80` por el que usted esta utilizando (no deberia haber conflic
 - Puede definir versiones del sistio cambiando la variable SITE_VERSION
 `define('SITE_VERSION', '1.0.2');          // Versión del sitio`
 
+### HTACCESS
+- Configuración en producción
+> Para habilitar el redireccionamiento 301 http > https, descomentar las siguientes lineas.
+
+~~~
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+~~~
+
 ## CHANGELOG
 #### v1.0.7
 
