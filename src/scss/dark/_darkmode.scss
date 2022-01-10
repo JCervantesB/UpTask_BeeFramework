@@ -6,6 +6,9 @@
     body {
         background-color: $grisOscuro;
     }
+    h1 {
+        color: v.$turquesa !important;
+    }
     .tagline, 
     .formulario label,
     .login .acciones a,
@@ -47,11 +50,11 @@
         background-color: v.$turquesa;
     }
     .usuario .usuario-nombre {
-        color: v.$grisClaro;
+        color: v.$turquesa;
     }
     .usuario .usuario-inicial {
         background: none;
-        border: 1px solid v.$grisClaro;
+        border: 1px solid v.$turquesa;
     }
 
     .dashboard {
