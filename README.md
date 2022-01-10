@@ -55,7 +55,45 @@ Si tu proyecto se encuentra en la raiz del hosting reemplazar '____EL BASEPATH E
 ### Conexión a la base de datos.
 - Este proyecto utiliza todas las bases de ActiveDirectory del proyecto UpTask Original https://github.com/JCervantesB/UpTask_MVC
 
-Es necesario editar el archivo app/includes/database.php para configurar las bases de datos.
+- Es necesario editar el archivo app/includes/database.php para configurar las bases de datos.
 ~~~
 $db = mysqli_connect('localhost', 'root', '', 'uptask');
 ~~~
+
+### Configuraciones adicionales app/core/settings.php
+- BeeFramework esta configurado para trabajar con PrePros como compilador de JS y CSS, por default esta apagado.
+`define('PREPROS'     , false);`
+
+- En caso de tener algun problema de conexión usando un puerto como :3000 
+Cambie el puerto 80 por el que usted esta utilizando (no deberia haber conflictos si PREPROS es false)
+`define('PORT'       , '80'); // Cambia el puerto en esta linea`
+
+- Puede cambiar el nombre de su sitio desde la variable SITE_NAME
+`define('SITE_NAME'   , 'UpTask'); // Esta variable afecta todas las vistas del sistema.`
+
+- Puede definir versiones del sistio cambiando la variable SITE_VERSION
+`define('SITE_VERSION', '1.0.2');          // Versión del sitio`
+
+## CHANGELOG
+v1.0.3
+- Cambios al ActiveRecord
+En este proyecto la classe ActiveRecord.php pasa a ser la clase Model.php alojada en "app/classes" y todas las clases extienden de Model y ya no de ActiveRecord.
+
+v1.0.2
+- Bee automatiza todas las rutas siempre y cuando se siga la siguiente estructura.
+- Controladores
+Dentro de app/controllers se conviven todos los controladores del sitio, estos deben llevar un nombre en camelcase iniciando en minusculas + la palabra Controller: authController.
+- Modelos
+Todos los modelos conviven en la carpeta models, estos pueden ser nombrados en mayusculas o minusculas, pero debe incluir la palabra Model despues del nombre del modelo, P.Ej: TareaModel.
+- Vistas
+Todas las vistas conviven en la carpeta templates/views.
+Bee buscara de forma automatica, un directorio cullo nombre sea el mismo que el controlador.
+> P.Ej: authController buscara una carpeta en templates/views/auth y dentro de esta, todos los archivos php ligados a un método en el controlador, deberan llevar el nombre del método seguido de la palabra View. Ej: crearView.php
+
+Donde crearView.php estara ligado al metodo crear del controlador authController
+
+v1.0.1
+- Se elimino el uso de los namespaces ya que en Bee opera de forma diferente (Solo requieres la clase).
+- Bee requiere que todos sus controladores utilicen sintaxis camelcase en sus nombres, por lo que pasaron a iniciar con minuscula. P.Ej: TareaController.php > tareaController.php
+v1.0.0
+- Se inicio la migracion de UpTask MVC a BeeFramework 1.1.3
