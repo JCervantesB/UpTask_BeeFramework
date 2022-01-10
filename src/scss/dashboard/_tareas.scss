@@ -19,6 +19,10 @@
     margin-top: 3rem;
     .no-tareas {
         text-align: center;
+        color: v.$rosa;
+        font-size: 3rem;
+        font-weight: 700;
+        text-transform: uppercase;
     }
 }
 
@@ -29,6 +33,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    &:hover {
+        background-color: darken(v.$grisClaro, 5%);
+    }
     
     &:last-of-type {
         border: none;

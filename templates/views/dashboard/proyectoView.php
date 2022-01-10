@@ -27,7 +27,7 @@
 </div>
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="../../assets/js/tareas.js"></script>
+<script src="/assets/js/tareas.js"></script>
 
 <?php include_once __DIR__ . '/footer-dashboard.php' ?>
 <?php include_once __DIR__ . '../../../includes/inc_footer.php' ?>

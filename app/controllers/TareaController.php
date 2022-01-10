@@ -11,7 +11,18 @@ class tareaController extends Controller{
     }
 
     public static function index() {
+        $proyectoId = $_GET['id'];
+        if(!$proyectoId) header('Location: /dashboard');
 
+        $proyecto = ProyectoModel::where('url', $proyectoId);
+
+        if(!$proyecto || $proyecto->propietarioId !== $_SESSION['id']) {
+            Flasher::new('No existe el proyecto.');
+            Redirect::to('error');
+        }
+
+        $tareas = TareaModel::belongsTo('proyectoId', $proyecto->id);
+        echo json_encode(['tareas' => $tareas]);
     }
    
 

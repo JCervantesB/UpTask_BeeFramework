@@ -16,7 +16,11 @@ class homeController extends Controller {
     register_to_bee_obj('bee_var', 'Súper Bee Var');
 
     // View::render('bee', $data);
-    Redirect::to('auth');
+    if(!isset($_SESSION['id'])) {
+      Redirect::to('auth');
+    } else {
+      Redirect::to('dashboard');
+    }
   }
 
   function test()
