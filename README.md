@@ -13,5 +13,19 @@ UpTask del curso Desarrollo Web Completo de Udemy
 
 - Realiza un clon del repositorio.
 
-`https://github.com/JCervantesB/UpTask_BeeFramework.git`
+`git clone https://github.com/JCervantesB/UpTask_BeeFramework.git`
+
+- Entra a la carpeta del proyecto.
+
+`cd ./UpTask_BeeFramework`
+
+- Instalar node
+
+`npm i`
+
+- Instalar Composer (En este proyecto, composer se encuentra en el directorio "app")
+~~~
+cd ./UpTask_BeeFramework/app
+composer install
+~~~
 
