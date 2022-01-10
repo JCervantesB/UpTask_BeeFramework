@@ -75,19 +75,61 @@ Cambie el puerto 80 por el que usted esta utilizando (no deberia haber conflicto
 `define('SITE_VERSION', '1.0.2');          // Versión del sitio`
 
 ## CHANGELOG
+v1.0.6
+API's
+- Se elimino la ruta /api/tareas y /api/tarea, ya que no pueden ser declaradas de la misma forma en que sea hacia con Uptask_MVC
+
+Ahora los endpoints de todas las consultas API provienen de cada uno de los méthodos del controlador tareaController.php
+
+> Consultar la estructura tareas.js
+
+v1.0.5
+Renombrado de controlador Login
+- Se renombro el controlador loginController por authController para que la estructura de la URI fuera /auth/
+
+v1.0.4
+Classe View
+- Se ha eliminado la Router.php y Render del proyecto original, ya que Bee utiliza su propio metodo para renderizar las vistas.
+
+- Bee renderiza las vistas mediante la classe View alojada en app/classes/
+
+- Bee requiere la variable `$data` para mostrar pasar informacion a las vistas, donde su estructura seria la siguiente:
+
+~~~
+$data =
+      [
+        'alertas'       => $alertas, // Pasando $alertas a una vista
+        'title'         => 'Iniciar Sesión', // Pasa el titulo de la pagina a mostrar en la vista
+      ];
+
+// Posteriormente se envia $data a una vista
+
+View::render('index', $data);
+
+// donde el primer parametro de render() es el nombre de la vista a mostrar.
+~~~
+
 v1.0.3
 - Cambios al ActiveRecord
+
 En este proyecto la classe ActiveRecord.php pasa a ser la clase Model.php alojada en "app/classes" y todas las clases extienden de Model y ya no de ActiveRecord.
 
 v1.0.2
 - Bee automatiza todas las rutas siempre y cuando se siga la siguiente estructura.
+
 - Controladores
+
 Dentro de app/controllers se conviven todos los controladores del sitio, estos deben llevar un nombre en camelcase iniciando en minusculas + la palabra Controller: authController.
+
 - Modelos
+
 Todos los modelos conviven en la carpeta models, estos pueden ser nombrados en mayusculas o minusculas, pero debe incluir la palabra Model despues del nombre del modelo, P.Ej: TareaModel.
+
 - Vistas
+
 Todas las vistas conviven en la carpeta templates/views.
 Bee buscara de forma automatica, un directorio cullo nombre sea el mismo que el controlador.
+
 > P.Ej: authController buscara una carpeta en templates/views/auth y dentro de esta, todos los archivos php ligados a un método en el controlador, deberan llevar el nombre del método seguido de la palabra View. Ej: crearView.php
 
 Donde crearView.php estara ligado al metodo crear del controlador authController
