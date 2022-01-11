@@ -5,8 +5,8 @@ $(document).ready(function() {
 
   // Waitme
   //$('body').waitMe({effect : 'orbit'});
-  console.log('////////// Bienvenido a UpTask en Bee Framework Versión ' + Bee.bee_version + ' //////////');
-  console.log('//////////////////// www.julio-cervantes.com ////////////////////');
+  // console.log('////////// Bienvenido a UpTask en Bee Framework Versión ' + Bee.bee_version + ' //////////');
+  // console.log('//////////////////// www.julio-cervantes.com ////////////////////');
   // console.log(Bee);
 
   /**

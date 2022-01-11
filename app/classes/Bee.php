@@ -1,8 +1,5 @@
 <?php
 
-use ActiveRecordModel as GlobalActiveRecordModel;
-use Model\ActiveRecordModel;
-
 class Bee {
 
   // Propiedades del framework

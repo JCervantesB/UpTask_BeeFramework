@@ -83,6 +83,11 @@ Cambie el puerto `80` por el que usted esta utilizando (no deberia haber conflic
 ~~~
 
 ## CHANGELOG
+
+#### v1.0.8
+
+- Se añadio comprobación a homeController para redirigir al usuario a Dashboard hay una session activa y no a Auth como se hacia originalmente al enviarlo hacia '/'
+
 #### v1.0.7
 
 - Se eliminaron algunos archivos de ejemplo de BeeFramework no necesarios.
