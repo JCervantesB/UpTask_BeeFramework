@@ -54,6 +54,12 @@ class Model extends Db
         $resultado = self::consultarSQL($query);
         return $resultado;
     }
+    // Busca todos los registros en una columna que cumplan una condicion
+    public static function belongsToAnd($columna, $valor, $columna2, $valor2) {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE ${columna} = '${valor}' AND ${columna2} = '${valor2}'";
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
 
     // Crea el objeto en memoria que es igual al de la BD
     protected static function crearObjeto($registro) {

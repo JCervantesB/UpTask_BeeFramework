@@ -9,10 +9,18 @@
             <?php foreach($d->proyectos as $proyecto) { ?>                 
                 <div class="caja">
                     <a href="/dashboard/proyecto?id=<?php echo $proyecto->url; ?>">                    
-                        <li class="proyecto">
+                        <div class="proyecto">
                             <?php echo $proyecto->proyecto; ?>
-                        </li>
+                        </div>                        
+                        <!-- Crear una barra de progreso -->
+                        <div class="barra-progreso">
+                            <small>Tareas pendientes: <?php echo $proyecto->totalTareasPendientes; ?> de <?php echo $proyecto->totalTareas; ?> </small>
+                            <div class="porcentaje" style="width: <?php echo $proyecto->porcentaje; ?>%">
+                                <small>Progreso: <?php echo $proyecto->porcentaje; ?>%</small>
+                            </div>
+                        </div>
                     </a>                    
+
                 </div>               
             <?php } ?>
         </ul>

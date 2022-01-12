@@ -18,6 +18,31 @@ class dashboardController extends Controller
 
         $id = $_SESSION['id'];
         $proyectos = ProyectoModel::belongsTo('propietarioId', $id);
+        
+        // Obtener el total de tareas de cada proyecto, total de tareas completas y total de tareas pendientes
+        foreach ($proyectos as $proyecto) {
+            $proyecto->tareas = TareaModel::belongsTo('proyectoId', $proyecto->id);
+            $proyecto->totalTareas = count($proyecto->tareas);
+            $proyecto->totalTareasCompletadas = 0;
+            $proyecto->totalTareasPendientes = 0;
+            foreach ($proyecto->tareas as $tarea) {
+                if ($tarea->estado == 1) {
+                    $proyecto->totalTareasCompletadas++;
+                } else {
+                    $proyecto->totalTareasPendientes++;
+                }
+            }
+            // Obtener el procentaje de tareas completadas y si tareas completadas es igual a 0, mostrar 0%
+            if ($proyecto->totalTareasCompletadas == 0) {
+                $proyecto->porcentaje = 0;
+            } else {
+                $proyecto->porcentaje = round(($proyecto->totalTareasCompletadas / $proyecto->totalTareas) * 100);
+            }
+
+        }
+
+
+       
 
         $data = [
             'proyectos' => $proyectos,

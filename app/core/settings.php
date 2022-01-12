@@ -70,7 +70,7 @@ define('LDB_ENGINE' , 'mysql');
 define('LDB_HOST'   , 'localhost');
 define('LDB_NAME'   , 'uptask');
 define('LDB_USER'   , 'root');
-define('LDB_PASS'   , '');
+define('LDB_PASS'   , 'root');
 define('LDB_CHARSET', 'utf8');
 
 // El controlador por defecto / el método por defecto / el controlador de errores por defecto
