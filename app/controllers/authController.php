@@ -47,7 +47,8 @@ class authController extends Controller
           }
         }
       }
-    }
+    }    
+
     $alertas = UsuarioModel::getAlertas();
 
     $data =
@@ -60,6 +61,44 @@ class authController extends Controller
       ];
 
     View::render('index', $data);
+  }
+
+  function login_social() {
+    // Validar que el correo exista
+    $usuario = UsuarioModel::where('email', $_POST['email']);
+    if(!$usuario) {
+      
+      $respuesta = [
+        'tipo' => 'exito',
+        'mensaje' => 'El usuario no existe, registrando usuario nuevo'
+      ];
+
+      $usuario = new UsuarioModel($_POST);
+      $usuario->guardar();
+
+      $_SESSION['id'] = $usuario->id;
+      $_SESSION['nombre'] = $usuario->nombre;
+      $_SESSION['email'] = $usuario->email;
+      $_SESSION['login'] = true;
+
+      echo json_encode($respuesta);
+      return;
+
+    } else {
+      
+      $_SESSION['id'] = $usuario->id;
+      $_SESSION['nombre'] = $usuario->nombre;
+      $_SESSION['email'] = $usuario->email;
+      $_SESSION['login'] = true;
+
+      $respuesta = [
+        'tipo' => 'exito',
+        'mensaje' => 'El usuario existe'
+      ];
+      echo json_encode($respuesta);
+      return;
+    }
+    
   }
 
   /**
@@ -111,6 +150,8 @@ class authController extends Controller
         }
       }
     }
+
+    
 
     $data =
       [

@@ -2,7 +2,7 @@
 
 class UsuarioModel extends Model
 {
-  protected static $tabla = 'usuarios';
+    protected static $tabla = 'usuarios';
     protected static $columnasDB = ['id', 'nombre', 'email', 'password', 'token', 'confirmado'];
 
     public function __construct($args = []) {
@@ -17,6 +17,8 @@ class UsuarioModel extends Model
         $this->confirmado = $args['confirmado'] ?? 0;
     }
 
+    
+
     // Validar el login de Usuarios
     public function validarLogin() {
         if(!$this->email) {
@@ -30,6 +32,14 @@ class UsuarioModel extends Model
         }
         if(strlen($this->password) < 6) {
             self::$alertas['error'][] = 'El Password debe contener al menos 6 caracteres';
+        }
+
+        return self::$alertas;
+    }
+    // Validar login desde una red social
+    public function validarLoginSocial() {
+        if(!$this->email) {
+            self::$alertas['error'][] = 'Usuario no registrado';
         }
 
         return self::$alertas;

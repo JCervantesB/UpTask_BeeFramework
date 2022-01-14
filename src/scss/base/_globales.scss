@@ -39,3 +39,25 @@ a {
 img {
     max-width: 100%;
 }
+.redes-sociales {
+    display: flex;
+    width: 80%;
+    align-content: space-around;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    
+    .red-social {
+        height: 4rem;
+    }
+    .wd-40 {
+        width: 40px;
+      }
+    .pd-x-15 {
+    padding-left: 15px;
+    padding-right: 15px;
+    }  
+}
+

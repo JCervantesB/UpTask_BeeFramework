@@ -10,6 +10,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="assets/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
+  <link href="assets/lib/Ionicons/css/ionicons.css" rel="stylesheet">
 
   <!-- Favicon del sitio -->
   <?php echo get_favicon(); ?>
